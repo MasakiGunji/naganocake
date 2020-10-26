@@ -10,6 +10,35 @@
   </head>
 
   <body>
+  <div class="container">
+    <div class="row header">
+      <div class="col-xs-2"><%= link_to "ホーム", root_path, class: 'btn btn-default mt-30' %></div>
+        <% if customer_signed_in? %>
+
+
+        <% else %>
+      <div class="col-xs-10 mt-30">
+        <ul class="header-list">
+          <li>
+            <%= link_to "About", about_path, class: 'btn btn-default w-80px' %>
+          </li>
+          <li>
+            <%= link_to "商品一覧", items_path, class: 'btn btn-default w-80px' %>
+          </li>
+          <li>
+            <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-default w-80px' %>
+          </li>
+          <li>
+            <%= link_to "ログイン", new_customer_session_path, class: 'btn btn-default w-80px' %>
+          </li>
+        </ul>
+      </div>
+
+      <% end %>
+    </div>
+
     <%= yield %>
+  </div>
+
   </body>
 </html>
