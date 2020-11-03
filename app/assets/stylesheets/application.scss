@@ -27,9 +27,10 @@
   background-color: pink;
 }
 
-.w-80px{
-  width: 80px;
-  height: 30px;
+.w-100px{
+  width: 100px;
+  height: 35px;
+  vertical-align: middle;
 }
 
 .mt-5{
@@ -40,8 +41,16 @@
   margin-top: 10px;
 }
 
+.mt-20{
+  margin-top: 20px;
+}
+
 .mt-30{
   margin-top: 30px;
+}
+
+.mt-50{
+  margin-top: 50px;
 }
 
 .ml-10{
@@ -49,7 +58,7 @@
 }
 
 .float-right{
-  float:right;
+  float: right;
 }
 
 .header-list{
@@ -60,4 +69,49 @@
 .header-list li{
   float: left;
   margin-left: 20px;
+}
+
+.mt-15{
+  margin-top: 15px;
+}
+
+.mg-auto{
+  margin: 0 auto;
+}
+
+.wd-500{
+  width: 450px;
+}
+
+.ht-50{
+  height: 50px;
+  line-height: 25px;
+}
+
+.flex{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.float-rht{
+  float: right;
+}
+
+.item_list{
+  width: 25%;
+}
+
+
+.table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+  vertical-align: middle;
+}
+
+.unsubscribe-top{
+  margin-top: 100px;
+  text-align: center;
+}
+
+.unsubscribe-text{
+  margin-top: 30px;
+  text-align: center;
 }

@@ -1,0 +1,57 @@
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @item.errors.count %>errors</h2>
+      <ul>
+        <% @item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="container">
+  <%= form_with model: @item, url: admins_item_path(@item), local: true do |f| %>
+  	<div class="row">
+  		<h1>商品編集</h1>
+  	</div>
+    <div class="row">
+    	<div class="col-xs-3">
+    		<%= attachment_image_tag @item, :image, :fill, 200, 200 %>
+    		<%= f.attachment_field :image %>
+    	</div>
+    	<div class="col-xs-9">
+    	  <table class="table table-striped">
+    			<thead>
+    				<tr>
+    					<th>商品名</th>
+    					<th><%= f.text_field :name %></th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				<tr>
+    					<th>商品説明</th>
+    					<th><%= f.text_field :introduction %></th>
+    				</tr>
+    				<tr>
+    					<th>ジャンル</th>
+    					<th><%= f.collection_select :genre_id, Genre.where(is_active: 1), :id, :name %></th>
+    				</tr>
+    				<tr>
+    					<th>税抜き価格</th>
+    					<th><%= f.number_field :price %>円</th>
+    				</tr>
+    				<tr>
+    					<th>販売ステータス</th>
+    					<th><%= f.select :is_active, [['販売停止中', 0], ['販売中', 1]] %></th>
+    				</tr>
+    			</tbody>
+    		</table>
+    	</div>
+    </div>
+  	<div class="row">
+  		<div class="col-xs-3">
+  			<%= f.submit '変更を保存', class:"btn btn-primary" %>
+  		</div>
+  	</div>
+	<% end %>
+</div>

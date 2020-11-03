@@ -8,7 +8,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.text :introduction, null: false
       t.integer :price, null: false
       t.boolean :is_active, null: false, default: "TURE"
-
+      
       t.timestamps
     end
   end

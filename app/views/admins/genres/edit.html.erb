@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>ジャンル編集</h3>
+      <%= form_with model: @genre, url: admins_genre_path, local: true do |f| %>
+        <h4>ジャンル</h4>
+        <%= f.text_field :name, class:"book-title-input" %>
+        <div><%= f.radio_button :is_active, true %>有効</div>
+        <div><%= f.radio_button :is_active, false %>無効</div>
+        <%= f.submit '編集を保存する', class:"btn btn-primary" %>
+      <% end %>
+    </div>  
+  </div>
+</div>
