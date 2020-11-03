@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <h3><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <table class="table table-striped">
+      	<thead>
+      		<tr>
+      			<th>顧客ID</th>
+      			<th><%= @customer.id %></th>
+      		</tr>
+      	</thead>
+      	<tbody>
+      		<tr>
+      		  <td>氏名</td>
+      			<td><%= @customer.last_name %> <%= @customer.first_name %></td>
+      		</tr>
+      		<tr>
+      		  <td>フリガナ</td>
+      			<td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
+      		</tr>
+      		<tr>
+      		  <td>郵便番号</td>
+      			<td><%= @customer.postal_code %></td>
+      		</tr>
+      		<tr>
+      		  <td>住所</td>
+      			<td><%= @customer.address %></td>
+      		</tr>
+      		<tr>
+      		  <td>電話番号</td>
+      			<td><%= @customer.telephone_number %></td>
+      		</tr>
+      		<tr>
+      		  <td>メールアドレス</td>
+      			<td><%= @customer.email %></td>
+      		</tr>
+      	</tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-2">
+      <%= link_to "編集する",edit_admins_customer_path(@customer), class: 'btn btn-default w-100px' %>
+    </div>
+    <div class="col-xs-2"></div>
+  </div>
+</div>

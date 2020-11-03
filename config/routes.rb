@@ -4,8 +4,26 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to:'public/homes#top'
   get 'about', to: 'public/homes#about'
-  get 'items', to: 'public/items#index'
-  get 'items/:id', to: 'public/items#show'
+  delete 'cart_items/destroy_all', to: 'public/cart_items#destroy_all'
+
+  get '/customers/my_page', to: 'public/customers#show'
+  get '/customers/edit', to: 'public/customers#edit'
+  patch '/customers', to: 'public/customers#update'
+  get '/customers/unsubscribe', to: 'public/customers#unsubscribe'
+  patch '/customers/withdraw', to: 'public/customers#withdraw'
+
+  namespace :admins do
+    resources :items, except: [:destroy]
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
+  end
+
+  scope module: "public" do
+    resources :items, only: [:index, :show]
+    resources :cart_items, only: [:index, :create, :update, :destroy]
+    resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+  end
+
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
@@ -17,6 +35,6 @@ Rails.application.routes.draw do
     passwords:     'customers/passwords',
     registrations: 'customers/registrations'
   }
-  
-  
+
+
 end

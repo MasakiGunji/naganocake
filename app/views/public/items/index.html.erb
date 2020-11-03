@@ -1,1 +1,28 @@
-商品一覧
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-2">
+      <h1>商品一覧</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 flex">
+      <% @items.each do |item| %>
+        <div class="item_list mt-30">
+          <%= link_to item_path(item) do %>
+          <div>
+            <%= attachment_image_tag item, :image, :fill, 150, 150 %>
+          </div>
+          <section>
+            <%= item.name %>
+          </section>
+          <% end %>
+          <section>
+            ¥<%= (item.price * 1.1).round(0).to_s(:delimited) %>
+          </section>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

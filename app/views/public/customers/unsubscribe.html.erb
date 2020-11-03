@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <section class="unsubscribe-top">
+        <h1>本当に退会しますか？</h1>
+      </section>
+      <section class="unsubscribe-text">
+        <p>
+          退会すると、会員登録情報や</br>
+          これまでの購入履歴が閲覧できなくなります。</br>
+          退会する場合は、「退会する」をクリックしてください。</br>
+        </p>
+      </section>
+    </div>
+  </div>
+  <div class="row mt-30">
+    <div class="col-xs-2 col-xs-offset-4">
+      <%= link_to '退会しない', customers_my_page_path, class: 'btn btn-default form-control'%>
+    </div>
+    <div class="col-xs-2">
+      <%= form_with model: @customer, url: customers_withdraw_path, local: true do |f| %>
+        <%= f.hidden_field :is_deleted, value: true %>
+        <%= f.submit '退会する', class: 'btn btn-default form-control', data: { confirm: '本当に退会しますか？' } %>
+      <% end %>
+    </div>
+  </div>
+</div>
