@@ -10,71 +10,70 @@
   </head>
 
   <body>
-  <div class="container">
-    <div class="row header">
-      <div class="col-xs-2"><%= link_to "ホーム", root_path, class: 'btn btn-default mt-30' %></div>
-        <% if customer_signed_in? %>
-          <div class="col-xs-10 mt-30">
-            <ul class="header-list">
-              <li>
-                <%= link_to " マイページ", customers_my_page_path, class: 'btn btn-default w-100px' %>
-              </li>
-              <li>
-                <%= link_to "商品一覧", items_path, class: 'btn btn-default w-100px' %>
-              </li>
-              <li>
-                <%= link_to "カート", cart_items_path, class: 'btn btn-default w-100px' %>
-              </li>
-              <li>
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-default w-100px' %>
-              </li>
-            </ul>
-          </div>
-        <% elsif admin_signed_in? %>
-          <div class="col-xs-10 mt-30">
-            <ul class="header-list">
-              <li>
-                <%= link_to "商品一覧", admins_items_path, class: 'btn btn-default w-100px' %>
-              </li>
-              <li>
-                <%= link_to "ジャンル一覧", admins_genres_path, class: 'btn btn-default w-100px' %>
-              </li>
-              <li>
-                <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-default w-100px' %>
-              </li>
-              <li>
-                <%= link_to "会員一覧", admins_customers_path, class: 'btn btn-default w-100px' %>
-              </li>
-              <li>
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-default w-100px' %>
-              </li>
-            </ul>
-          </div>
-        <% else %>
-          <div class="col-xs-10 mt-30">
-            <ul class="header-list">
-              <li>
-                <%= link_to "管理者", new_admin_session_path, class: 'btn btn-default w-100px' %>
-              </li>
-              <li>
-                <%= link_to "About", about_path, class: 'btn btn-default w-100px' %>
-              </li>
-              <li>
-                <%= link_to "商品一覧", items_path, class: 'btn btn-default w-100px' %>
-              </li>
-              <li>
-                <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-default w-100px' %>
-              </li>
-              <li>
-                <%= link_to "ログイン", new_customer_session_path, class: 'btn btn-default w-100px' %>
-              </li>
-            </ul>
-          </div>
-        <% end %>
+    <div class="container header">
+      <div class="row">
+        <div class="col-xs-2"><%= link_to "ホーム", root_path, class: 'btn btn-default mt-30' %></div>
+          <% if customer_signed_in? %>
+            <div class="col-xs-10 mt-30">
+              <ul class="header-list">
+                <li>
+                  <%= link_to " マイページ", customers_my_page_path, class: 'btn btn-default w-100px' %>
+                </li>
+                <li>
+                  <%= link_to "商品一覧", items_path, class: 'btn btn-default w-100px' %>
+                </li>
+                <li>
+                  <%= link_to "カート", cart_items_path, class: 'btn btn-default w-100px' %>
+                </li>
+                <li>
+                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-default w-100px' %>
+                </li>
+              </ul>
+            </div>
+          <% elsif admin_signed_in? %>
+            <div class="col-xs-10 mt-30">
+              <ul class="header-list">
+                <li>
+                  <%= link_to "商品一覧", admins_items_path, class: 'btn btn-default w-100px' %>
+                </li>
+                <li>
+                  <%= link_to "ジャンル一覧", admins_genres_path, class: 'btn btn-default w-100px' %>
+                </li>
+                <li>
+                  <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-default w-100px' %>
+                </li>
+                <li>
+                  <%= link_to "会員一覧", admins_customers_path, class: 'btn btn-default w-100px' %>
+                </li>
+                <li>
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-default w-100px' %>
+                </li>
+              </ul>
+            </div>
+          <% else %>
+            <div class="col-xs-10 mt-30">
+              <ul class="header-list">
+                <li>
+                  <%= link_to "管理者", new_admin_session_path, class: 'btn btn-default w-100px' %>
+                </li>
+                <li>
+                  <%= link_to "About", about_path, class: 'btn btn-default w-100px' %>
+                </li>
+                <li>
+                  <%= link_to "商品一覧", items_path, class: 'btn btn-default w-100px' %>
+                </li>
+                <li>
+                  <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-default w-100px' %>
+                </li>
+                <li>
+                  <%= link_to "ログイン", new_customer_session_path, class: 'btn btn-default w-100px' %>
+                </li>
+              </ul>
+            </div>
+          <% end %>
+        </div>
       </div>
+      <%= yield %>
     </div>
-    <%= yield %>
-  </div>
-
   </body>
 </html>
