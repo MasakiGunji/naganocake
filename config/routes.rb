@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   get '/customers/unsubscribe', to: 'public/customers#unsubscribe'
   patch '/customers/withdraw', to: 'public/customers#withdraw'
 
+  post '/orders/confirm', to: 'public/orders#confirm'
+  get '/def', to: 'public/orders#complete'
+
+
   namespace :admins do
     resources :items, except: [:destroy]
     resources :genres, only: [:index, :create, :edit, :update]
@@ -22,6 +26,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :create, :update, :destroy]
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+    resources :orders, only: [:index, :new, :create, :show]
   end
 
 

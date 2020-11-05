@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8">
+      <%= @order.shipping_cost.to_s(:delimited) %>
+      <%= @order.total_payment.to_s(:delimited) %>
+      <%= @order.postal_code %>
+      <%= @order.address %>
+      <%= @order.name %>
+      <%= @order.payment_method %>
+    </div>
+  </div>
+</div>
