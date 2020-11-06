@@ -7,16 +7,19 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
+
     @cart_items = CartItem.includes(:item).where(customer_id: current_customer.id)
-    sum = 0
+    @sum = 0
     @cart_items.each do |cart_item|
-      sum += (cart_item.item.price * 1.1).round(0) * cart_item.amount
+      @sum += (cart_item.item.price * 1.1).round(0) * cart_item.amount
     end
 
-    @order = Order.new
+    @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.shipping_cost = 800
-    @order.total_payment = sum
+    @order.total_payment = @sum + @order.shipping_cost
+    @order.status = "waiting"
+
     if params[:flag] == "a"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
@@ -26,8 +29,6 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = @address.postal_code
       @order.address = @address.address
       @order.name = @address.name
-    else
-
     end
       render :confirm
   end
@@ -40,7 +41,18 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.customer_id = current_customer.id
+    @order.save
+    @cart_items = CartItem.includes(:item).where(customer_id: current_customer.id)
+    @cart_items.each do |cart_item|
+      @order_detail = OrderDetail.new
+      @order_detail.order_id = @order.id
+      @order_detail.item_id = cart_item.item.id
+      @order_detail.price = cart_item.item.price
+      @order_detail.amount = cart_item.item.amount
+      @order_detail.making_status = 0
+      @order_detail.save
+    end
+    redirect_to def_path
   end
 
   def show
@@ -50,6 +62,6 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-
+    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
   end
 end

@@ -1,12 +1,71 @@
 <div class="container">
   <div class="row">
+    <div class="col-xs-11 col-xs-offset-1">
+      <h1>注文情報確認</h1>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-xs-8">
-      <%= @order.shipping_cost.to_s(:delimited) %>
-      <%= @order.total_payment.to_s(:delimited) %>
+      <table class="table table-striped table-bordered">
+      	<thead>
+      		<tr>
+      			<th>商品名</th>
+      			<th>単価(税込)</th>
+      			<th>数量</th>
+      			<th>小計</th>
+      		</tr>
+      	</thead>
+      	<tbody>
+      	  <% @cart_items.each do |cart_item| %>
+        		<tr>
+        			<td>
+        			  <%= attachment_image_tag @item, :image, :fill, 40, 40 %>
+        			  <%= cart_item.item.name %>
+        			</td>
+        			<td><%= ((cart_item.item.price * 1.1).round(0)).to_s(:delimited) %></td>
+        			<td><%= cart_item.amount %></td>
+        			<td><%= ((cart_item.item.price * 1.1).round(0) * cart_item.amount).to_s(:delimited) %></td>
+        		</tr>
+        	<% end %>
+      	</tbody>
+      </table>
       <%= @order.postal_code %>
       <%= @order.address %>
       <%= @order.name %>
-      <%= @order.payment_method %>
+      <%= @order.payment_method_i18n %>
+    </div>
+    <div class="col-xs-4">
+      <table class="table table-bordered">
+        <tr>
+          <th>送料</th>
+          <th><%= @order.shipping_cost.to_s(:delimited) %></th>
+        </tr>
+        <tr>
+          <th>商品合計</th>
+          <th><%= @sum.to_s(:delimited) %></th>
+        </tr>
+        <tr>
+          <th>請求金額</th>
+          <th><%= @order.total_payment.to_s(:delimited) %></th>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row mt-20">
+    <div class="col-xs-2">
+      <h4><b>支払方法</b></h4>
+    </div>
+    <div class="col-xs-3 v-a-middle">
+      <p class="v-a-middle"><%= @order.payment_method %></p>
+    </div>
+  </div>
+  <div class="row mt-20">
+    <div class="col-xs-2">
+      <h4><b>お届け先</b></h4>
+    </div>
+    <div class="col-xs-3">
+      <p><%= @order.postal_code + @order.address %></p>
+      <p><%= @order.name %></p>
     </div>
   </div>
 </div>
