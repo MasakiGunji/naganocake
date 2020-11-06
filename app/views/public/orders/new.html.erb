@@ -5,14 +5,14 @@
 
       <%= form_with model: @order, url: orders_confirm_path, local: true do |f| %>
       <h3>支払い方法</h3>
-      <div><%= f.radio_button :payment_method, 0, checked: "checked" %>  クレジットカード</div>
-      <div><%= f.radio_button :payment_method, 1 %>  銀行振込</div>
+      <div><%= f.radio_button :payment_method, :credit_card, checked: "checked" %>  クレジットカード</div>
+      <div><%= f.radio_button :payment_method, :bank_transfer %>  銀行振込</div>
       <h3>お届け先</h3>
       <div>
         <h4><%= radio_button_tag :flag, "a", checked: "checked" %> ご自身の住所</h4>
         <div>
           <%= current_customer.postal_code %><%= current_customer.address %></br>
-          <%= current_customer.last_name %><%= current_customer.first_name %>
+          <%= current_customer.full_name %>
         </div>
         <div>
           <h4><%= radio_button_tag :flag, "b" %> 登録済住所から選択</h4>
