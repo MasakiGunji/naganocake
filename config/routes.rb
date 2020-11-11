@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to:'public/homes#top'
   get 'about', to: 'public/homes#about'
+  get 'admin', to: 'admins/homes#top'
   delete 'cart_items/destroy_all', to: 'public/cart_items#destroy_all'
 
   get '/customers/my_page', to: 'public/customers#show'
@@ -20,6 +21,8 @@ Rails.application.routes.draw do
     resources :items, except: [:destroy]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:index, :show, :update]
+    resources :order_details, only: [:update]
   end
 
   scope module: "public" do
