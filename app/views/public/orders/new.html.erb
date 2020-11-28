@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1">
+    <div class="col-xs-9 col-xs-offset-3">
       <h1>注文情報入力</h1>
 
       <%= form_with model: @order, url: orders_confirm_path, local: true do |f| %>
@@ -14,18 +14,20 @@
           <%= current_customer.postal_code %><%= current_customer.address %></br>
           <%= current_customer.full_name %>
         </div>
+        <% if @address.present? %>
         <div>
           <h4><%= radio_button_tag :flag, "b" %> 登録済住所から選択</h4>
-            <%= f.collection_select :id, @address, :id, :full_address %>
+            <%= f.collection_select :full_address, @address, :id, :full_address %>
         </div>
+        <% end %>
         <div>
           <h4><%= radio_button_tag :flag, "c" %> 新しいお届け先</h4>
           <p>郵便番号(ハイフンなし)</p>
-          <%= f.text_field :postal_code %>
+          <%= f.text_field :postal_code, class:"form-control" %>
           <p>住所</p>
-          <%= f.text_field :address %>
+          <%= f.text_field :address, class:"form-control" %>
           <p>宛名</p>
-          <%= f.text_field :name %>
+          <%= f.text_field :name, class:"form-control" %>
         </div>
       </div>
       <div class="mt-30">

@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<h1>新規商品登録</h1>
+		<h1>商品詳細</h1>
 	</div>
 	<div class="row">
 		<div class="col-xs-3">
@@ -10,7 +10,7 @@
 		  <table class="table table-striped">
 				<thead>
 					<tr>
-						<th>商品名</th>
+						<th class="www">商品名</th>
 						<th><%= @item.name %></th>
 					</tr>
 				</thead>
@@ -24,7 +24,7 @@
 						<th><%= @item.genre.name %></th>
 					</tr>
 					<tr>
-						<th>税込み価格(税抜き価格)</th>
+						<th>税込み価格</br>(税抜き価格)</th>
 						<th><%= (@item.price*1.1).round(0) %>(<%= @item.price %>)円</th>
 					</tr>
 					<tr>

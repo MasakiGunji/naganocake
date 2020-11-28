@@ -17,16 +17,19 @@
             <div class="col-xs-10 mt-30">
               <ul class="header-list">
                 <li>
-                  <%= link_to " マイページ", customers_my_page_path, class: 'btn btn-default w-100px' %>
+                  <p>ようこそ<%= current_customer.full_name %>さん</p>
                 </li>
                 <li>
-                  <%= link_to "商品一覧", items_path, class: 'btn btn-default w-100px' %>
+                  <%= link_to " マイページ", customers_my_page_path, class: 'btn btn-default w-120px' %>
                 </li>
                 <li>
-                  <%= link_to "カート", cart_items_path, class: 'btn btn-default w-100px' %>
+                  <%= link_to "商品一覧", items_path, class: 'btn btn-default w-120px' %>
                 </li>
                 <li>
-                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-default w-100px' %>
+                  <%= link_to "カート", cart_items_path, class: 'btn btn-default w-120px' %>
+                </li>
+                <li>
+                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-default w-120px' %>
                 </li>
               </ul>
             </div>
@@ -34,19 +37,19 @@
             <div class="col-xs-10 mt-30">
               <ul class="header-list">
                 <li>
-                  <%= link_to "商品一覧", admins_items_path, class: 'btn btn-default w-100px' %>
+                  <%= link_to "商品一覧", admins_items_path, class: 'btn btn-default w-120px' %>
                 </li>
                 <li>
-                  <%= link_to "ジャンル一覧", admins_genres_path, class: 'btn btn-default w-100px' %>
+                  <%= link_to "ジャンル一覧", admins_genres_path, class: 'btn btn-default w-120px' %>
                 </li>
                 <li>
-                  <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-default w-100px' %>
+                  <%= link_to "注文履歴一覧", admins_orders_path, class: 'btn btn-default w-120px' %>
                 </li>
                 <li>
-                  <%= link_to "会員一覧", admins_customers_path, class: 'btn btn-default w-100px' %>
+                  <%= link_to "会員一覧", admins_customers_path, class: 'btn btn-default w-120px' %>
                 </li>
                 <li>
-                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-default w-100px' %>
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-default w-120px' %>
                 </li>
               </ul>
             </div>
@@ -54,19 +57,19 @@
             <div class="col-xs-10 mt-30">
               <ul class="header-list">
                 <li>
-                  <%= link_to "管理者", new_admin_session_path, class: 'btn btn-default w-100px' %>
+                  <%= link_to "管理者", new_admin_session_path, class: 'btn btn-default w-120px' %>
                 </li>
                 <li>
-                  <%= link_to "About", about_path, class: 'btn btn-default w-100px' %>
+                  <%= link_to "About", about_path, class: 'btn btn-default w-120px' %>
                 </li>
                 <li>
-                  <%= link_to "商品一覧", items_path, class: 'btn btn-default w-100px' %>
+                  <%= link_to "商品一覧", items_path, class: 'btn btn-default w-120px' %>
                 </li>
                 <li>
-                  <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-default w-100px' %>
+                  <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-default w-120px' %>
                 </li>
                 <li>
-                  <%= link_to "ログイン", new_customer_session_path, class: 'btn btn-default w-100px' %>
+                  <%= link_to "ログイン", new_customer_session_path, class: 'btn btn-default w-120px' %>
                 </li>
               </ul>
             </div>
@@ -74,6 +77,10 @@
         </div>
       </div>
       <%= yield %>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 fo">
+      </div>
     </div>
   </body>
 </html>

@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-11 col-xs-offset-1">
+      <h1>注文履歴詳細</h1>
+    </div>
+  </div>
+  <div class="row mt-20">
+    <div class="col-xs-2">
+      <h4 class="mt-0">購入者</h4>
+    </div>
+    <div class="col-xs-10">
+      <%= link_to admins_customer_path(@order.customer) do %>
+        <%= @order.customer.full_name %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row mt-20">
+    <div class="col-xs-2">
+      <h4 class="mt-0">配送先</h4>
+    </div>
+    <div class="col-xs-10">
+      <p>〒<%= @order.postal_code %> <%= @order.address %></p>
+      <p><%= @order.name %></p>
+    </div>
+  </div>
+  <div class="row mt-20">
+    <div class="col-xs-2">
+      <h4 class="mt-0">支払い方法</h4>
+    </div>
+    <div class="col-xs-10">
+      <%= @order.payment_method_i18n %>
+    </div>
+  </div>
+  <div class="row mt-20">
+    <div class="col-xs-2">
+      <h4 class="mt-0">注文ステータス</h4>
+    </div>
+    <div class="col-xs-10">
+      <%= form_with model: @order, url: admins_order_path(@order), local: true do |f| %>
+        <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
+        <%= f.submit '更新', class:"btn btn-primary"%>
+      <% end %>
+    </div>
+  </div>
+  <div class="row mt-30">
+    <div class="col-xs-8">
+      <table class="table table-striped table-bordered">
+      	<thead>
+      		<tr>
+      			<th>商品名</th>
+      			<th>単価(税込)</th>
+      			<th>数量</th>
+      			<th>小計</th>
+      			<th>制作ステータス</th>
+      		</tr>
+      	</thead>
+      	<tbody>
+      	  <% @order.order_details.each do |order_detail| %>
+        		<tr>
+        			<td>
+        			  <%= order_detail.item.name %>
+        			</td>
+        			<td>
+        			  <%= order_detail.price %>
+        			</td>
+        			<td>
+        			  <%= order_detail.amount %>
+        			</td>
+        			<td>
+        			  <%= order_detail.price * order_detail.amount %>
+        			</td>
+        			<td>
+                <%= form_with model: order_detail, url: admins_order_detail_path(order_detail), local: true do |f| %>
+                  <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]} %>
+                  <%= f.submit '更新', class:"btn btn-primary"%>
+                <% end %>
+        			</td>
+        		</tr>
+      		<% end %>
+      	</tbody>
+      </table>
+    </div>
+  </div>
+</div>

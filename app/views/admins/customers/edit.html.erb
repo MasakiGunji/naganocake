@@ -6,7 +6,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-12">
       <%= form_with model: @customer, url: admins_customer_path(@customer), local: true do |f| %>
         <table class="table table-striped">
         	<thead>
@@ -30,15 +30,15 @@
         		</tr>
         		<tr>
         		  <td>住所</td>
-        			<td><%= f.text_field :address %></td>
+        			<td><%= f.text_field :address, class:"form-control" %></td>
         		</tr>
         		<tr>
         		  <td>電話番号</td>
-        			<td><%= f.text_field :telephone_number %></td>
+        			<td><%= f.text_field :telephone_number, class:"form-control" %></td>
         		</tr>
         		<tr>
         		  <td>メールアドレス</td>
-        			<td><%= f.email_field :email %></td>
+        			<td><%= f.email_field :email, class:"form-control" %></td>
         		</tr>
         		<tr>
         		  <td>会員ステータス</td>
